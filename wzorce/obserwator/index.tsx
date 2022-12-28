@@ -31,7 +31,8 @@ export default function Obserwator() {
         <input type="text" placeholder="wpisz swoje imię" />
         <button>zaprenumeruj </button>
       </div>
-
+      <br />
+      <hr />
       <div>
         <h2>wyślij nowy numer</h2>
         <h3>działanie po stronie gazety</h3>
