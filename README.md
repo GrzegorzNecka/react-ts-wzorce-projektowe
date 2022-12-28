@@ -1,3 +1,3 @@
 # react-ts-wzorce-projektowe
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-ts-5yewie)
+[projekt na podstawie : ](https://frontstack.pl/observer-design-pattern/)
