@@ -2,17 +2,18 @@ import { Observer, Subject, Release } from './types';
 
 export class NewspaperPeriodical implements Subject<Observer, Release> {
   private newspaperRelease: Release;
-  private readonly subscribers: Observer[];
-
+  readonly subscribers: Observer[];
+  readonly newspapers: Release[];
   constructor() {
     this.newspaperRelease = null;
     this.subscribers = [];
+    this.newspapers = [];
   }
 
   addSubscriber(subscriber: Observer) {
     this.subscribers.push(subscriber);
-
-    const message = `welcome to our members`;
+    const message = `welcome ${subscriber.name} to our members`;
+    return { message };
   }
 
   removeSubscriber(subscriber: Observer) {
@@ -24,9 +25,18 @@ export class NewspaperPeriodical implements Subject<Observer, Release> {
     }
   }
 
+  getAllSubscribers() {
+    return this.subscribers;
+  }
+
   sendNewRelease(release: Release) {
     this.newspaperRelease = release;
+    this.newspapers.push(release);
     this.notify();
+  }
+
+  getAllNewspapers() {
+    return this.newspapers;
   }
 
   notify() {
