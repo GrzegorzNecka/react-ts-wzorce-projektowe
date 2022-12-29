@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NewspaperSubscriber } from './observer';
 import { NewspaperPeriodical } from './subject';
+import { Observer } from './types';
 
 const lifeMagazine = new NewspaperPeriodical();
 
@@ -21,6 +22,17 @@ lifeMagazine.sendNewRelease({
 });
 
 export default function Obserwator() {
+  const [inputValue, setInputVal] = React.useState<string>('');
+  // const [subscribers, setSubcriber] = React.useState(null)
+  //
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputVal(e.currentTarget.value);
+  };
+  //
+  const handleOnClick = () => {
+    lifeMagazine.addSubscriber(inputValue);
+  };
+
   return (
     <div>
       <h1>Wzorzec Obserwator</h1>
@@ -28,8 +40,13 @@ export default function Obserwator() {
       <div>
         <h2>założ prenumeratę</h2>
         <h3>działanie po stronie potencjalnego subskrybenta</h3>
-        <input type="text" placeholder="wpisz swoje imię" />
-        <button>zaprenumeruj </button>
+        <input
+          value={inputValue}
+          onChange={handleOnChange}
+          type="text"
+          placeholder="wpisz swoje imię"
+        />
+        <button onClick={handleOnClick}>zaprenumeruj </button>
       </div>
       <br />
       <hr />

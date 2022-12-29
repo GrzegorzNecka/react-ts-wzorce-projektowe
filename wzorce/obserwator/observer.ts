@@ -1,8 +1,8 @@
 import { Observer } from './types';
 
 export class NewspaperSubscriber implements Observer {
-  readonly name: Observer['name'];
-
+  // readonly name: Observer['name'];
+  readonly name: string;
   constructor(name) {
     this.name = name;
   }
