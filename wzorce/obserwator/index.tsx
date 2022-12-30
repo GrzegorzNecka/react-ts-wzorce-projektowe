@@ -26,8 +26,10 @@ lifeMagazine.sendNewRelease({
 });
 let counter = 3;
 export default function Obserwator() {
+  //
   const [inputValue, setInputVal] = React.useState<string>('');
   const [inputMessage, setInputMessage] = React.useState<string>('');
+  const [isObserver, setIsObserver] = React.useState<boolean>(false);
   const [newspapers, setNewspapers] = React.useState<Release[]>(
     lifeMagazine.getAllNewspapers()
   );
@@ -41,6 +43,7 @@ export default function Obserwator() {
     const subscribe = lifeMagazine.addSubscriber(newSubscriber);
     setInputMessage(subscribe.message);
     setInputVal('');
+    setIsObserver(true);
   };
 
   const subscribers = lifeMagazine.getAllSubscribers();
@@ -58,10 +61,10 @@ export default function Obserwator() {
         <p>
           Observer design pattern jest behawioralnym wzorcem projektowym w
           którym jeden obiekt nazywany <b>Subject</b> informuje wszystkie inne
-          obserwujące go obiekty <b>Observers</b> o zmianach w jego wewnętrznym stanie. Inne
-          obiekty wtedy zareagują na tę zmianę i obsłużą ją zgodnie z
-          wymaganiami. Informowanie najczęściej jest realizowane przez wywołanie
-          jednej z metod obserwatora.
+          obserwujące go obiekty <b>Observers</b> o zmianach w jego wewnętrznym
+          stanie. Inne obiekty wtedy zareagują na tę zmianę i obsłużą ją zgodnie
+          z wymaganiami. Informowanie najczęściej jest realizowane przez
+          wywołanie jednej z metod obserwatora.
         </p>
 
         <p>przykład zastosowania - prenumerata gazety</p>
@@ -83,17 +86,21 @@ export default function Obserwator() {
         <button onClick={handleOnClick}>zaprenumeruj </button>
         <p>{inputMessage}</p>
 
-        <h4>lista wydań</h4>
-        <ul>
-          {subscribers &&
-            newspapers.map((elem, i) => {
-              return (
-                <li
-                  key={i}
-                >{`lp: ${elem.num}, title: ${elem.title}, cost: ${elem.cost},`}</li>
-              );
-            })}
-        </ul>
+        {isObserver && (
+          <div>
+            <h4>lista wydań</h4>
+            <ul>
+              {subscribers &&
+                newspapers.map((elem, i) => {
+                  return (
+                    <li
+                      key={i}
+                    >{`lp: ${elem.num}, title: ${elem.title}, cost: ${elem.cost},`}</li>
+                  );
+                })}
+            </ul>
+          </div>
+        )}
       </section>
       <br />
       <hr />
