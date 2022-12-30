@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NewspaperSubscriber } from './observer';
 import { NewspaperPeriodical } from './subject';
-import { Observer, Release } from './types';
+import { Release } from './types';
 
 const lifeMagazine = new NewspaperPeriodical();
 
@@ -12,8 +12,6 @@ const jurek = new NewspaperSubscriber('Jurek');
 lifeMagazine.addSubscriber(adam);
 lifeMagazine.addSubscriber(marek);
 lifeMagazine.addSubscriber(jurek);
-
-// lifeMagazine.removeSubscriber(jurek);
 
 lifeMagazine.sendNewRelease({
   title: 'magazine title 1',
@@ -56,10 +54,23 @@ export default function Obserwator() {
   return (
     <div>
       <h1>Wzorzec Obserwator</h1>
+      <article>
+        <p>
+          Observer design pattern jest behawioralnym wzorcem projektowym w
+          którym jeden obiekt nazywany <b>Subject</b> informuje wszystkie inne
+          obserwujące go obiekty o zmianach w jego wewnętrznym stanie. Inne
+          obiekty wtedy zareagują na tę zmianę i obsłużą ją zgodnie z
+          wymaganiami. Informowanie najczęściej jest realizowane przez wywołanie
+          jednej z metod obserwatora.
+        </p>
+        <a href="https://frontstack.pl/observer-design-pattern/">źródło</a>
+      </article>
+      <hr />{' '}
+      <section className="observer observer--observer">
+        <h2>Observer</h2>
+        <h3>działanie po stronie potencjalnego subskrybenta</h3>
+        <h4>załóż prenumeratę</h4>
 
-      <div>
-        <h2>działanie po stronie potencjalnego subskrybenta</h2>
-        <h3> założ prenumeratę</h3>
         <input
           value={inputValue}
           onChange={handleOnChange}
@@ -69,7 +80,7 @@ export default function Obserwator() {
         <button onClick={handleOnClick}>zaprenumeruj </button>
         <p>{inputMessage}</p>
 
-        <h3>lista wydań</h3>
+        <h4>lista wydań</h4>
         <ul>
           {subscribers &&
             newspapers.map((elem, i) => {
@@ -80,12 +91,13 @@ export default function Obserwator() {
               );
             })}
         </ul>
-      </div>
+      </section>
       <br />
       <hr />
-      <div>
-        <h2>działanie po stronie gazety wyślij nowy numer</h2>
-        <h3>wyślij nowy numer</h3>
+      <section className="observer observer--subject">
+        <h2>Subject</h2>
+        <h3>działanie po stronie gazety wyślij nowy numer</h3>
+        <h4>wyślij nowy numer</h4>
         <button
           onClick={() => {
             let c = counter++;
@@ -98,17 +110,17 @@ export default function Obserwator() {
         >
           wyślij nowy numer
         </button>
-      </div>
-      <br />
-      <div>
-        <h3>lista subskrybentów:</h3>
-        <ul>
-          {subscribers &&
-            subscribers.map((elem, i) => {
-              return <li key={i}>{elem.name}</li>;
-            })}
-        </ul>
-      </div>
+        <br />
+        <div>
+          <h4>lista subskrybentów:</h4>
+          <ul>
+            {subscribers &&
+              subscribers.map((elem, i) => {
+                return <li key={i}>{elem.name}</li>;
+              })}
+          </ul>
+        </div>{' '}
+      </section>
     </div>
   );
 }
