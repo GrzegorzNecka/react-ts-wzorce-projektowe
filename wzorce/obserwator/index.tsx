@@ -58,11 +58,14 @@ export default function Obserwator() {
         <p>
           Observer design pattern jest behawioralnym wzorcem projektowym w
           którym jeden obiekt nazywany <b>Subject</b> informuje wszystkie inne
-          obserwujące go obiekty o zmianach w jego wewnętrznym stanie. Inne
+          obserwujące go obiekty <b>Observers</b> o zmianach w jego wewnętrznym stanie. Inne
           obiekty wtedy zareagują na tę zmianę i obsłużą ją zgodnie z
           wymaganiami. Informowanie najczęściej jest realizowane przez wywołanie
           jednej z metod obserwatora.
         </p>
+
+        <p>przykład zastosowania - prenumerata gazety</p>
+
         <a href="https://frontstack.pl/observer-design-pattern/">źródło</a>
       </article>
       <hr />{' '}
