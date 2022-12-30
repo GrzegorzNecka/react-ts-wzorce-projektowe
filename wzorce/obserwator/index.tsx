@@ -39,6 +39,9 @@ export default function Obserwator() {
   };
   //
   const handleOnClick = () => {
+    if (inputValue.length <= 3) {
+      return;
+    }
     const newSubscriber = new NewspaperSubscriber(inputValue);
     const subscribe = lifeMagazine.addSubscriber(newSubscriber);
     setInputMessage(subscribe.message);
@@ -82,6 +85,7 @@ export default function Obserwator() {
           onChange={handleOnChange}
           type="text"
           placeholder="wpisz swoje imię"
+          // pattern="\w{3,16}"
         />
         <button onClick={handleOnClick}>zaprenumeruj </button>
         <p>{inputMessage}</p>
